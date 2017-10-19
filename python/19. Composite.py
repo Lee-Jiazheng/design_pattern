@@ -72,5 +72,6 @@ if __name__ == "__main__":
     root.Display(1)
     print("-"*15)
     root.LineOfDuty()
-    
+    # observe the FinanceDepartment class inheriates which classes
+    print(', '.join(c.__name__ for c in FinanceDepartment.__mro__))
             
