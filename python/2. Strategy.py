@@ -62,6 +62,7 @@ class CashContext:
             self.real_cash = self.option[cash_type]
     
     def GetResult(self, money):
+        # we can return max( rebate )
         if self.real_cash is not None:
             return self.real_cash.acceptCash(money)
 

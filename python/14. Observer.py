@@ -41,6 +41,7 @@ class Delegate:
     def __radd__(self, other):
         self.delegates.append(other)
 
+    # so it can be a iterator
     def __getitem__(self, pos):
         return self.delegates[pos]        
 
@@ -48,6 +49,10 @@ class Delegate:
         # print all the method name
         return reduce(lambda x, y: x+' '+y.__name__, self.delegates, "")
 
+    def __call__(self):
+        for update in self.delegates:
+            update()
+            
 class Boss(Subject):
     Update = Delegate()
     def __init__(self, name):
@@ -55,8 +60,10 @@ class Boss(Subject):
         self.state = "%s is back" % name
     
     def Notify(self):
-        for update in self.Update:
-            update()
+        '''for update in self.Update:
+            update()'''
+        self.Update()
+
 
 
 if __name__ == "__main__":
